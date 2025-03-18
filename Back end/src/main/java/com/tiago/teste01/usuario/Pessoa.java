@@ -1,30 +1,24 @@
 package com.tiago.teste01.usuario;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "pessoas")
 public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 100)  // Define restrições na coluna
     private String nome;
 
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
+    @Column(unique = true, nullable = false, length = 11) // CPF deve ser único
+    private String cpf;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
